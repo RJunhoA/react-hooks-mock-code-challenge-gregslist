@@ -2,8 +2,10 @@ import React, {useState, useEffect} from "react";
 import ListingCard from "./ListingCard";
 
 function ListingsContainer() {
-
+ 
   const [fetching, setFetch] = useState([])
+
+
   useEffect(() => {
     fetch('http://localhost:6001/listings')
     .then(response => response.json())
@@ -11,7 +13,8 @@ function ListingsContainer() {
   }, [])
 
   const renderCard = fetching.map((fetch) => 
-    <ListingCard fetch={fetch}/>)
+   <ListingCard key={fetch.id} fetch={fetch}/>
+  )
 
   return (
     <main>
